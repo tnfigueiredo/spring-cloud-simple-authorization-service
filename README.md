@@ -36,12 +36,12 @@ CURL:
 Postman:
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/tnfigueiredo/spring-cloud-account-service/master/Postman_access_token_header.png.png" title="Postman - Basic Auth">
+  <img src="https://raw.githubusercontent.com/tnfigueiredo/spring-cloud-account-service/master/Postman_access_token_header.png" title="Postman - Basic Auth">
 </p>
 
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/tnfigueiredo/spring-cloud-account-service/master/Postman_access_token_body.png.png" title="Postman - Body">
+  <img src="https://raw.githubusercontent.com/tnfigueiredo/spring-cloud-account-service/master/Postman_access_token_body.png" title="Postman - Body">
 </p>
 
 ### Resource Server Request
