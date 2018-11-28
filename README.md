@@ -10,25 +10,9 @@ The objective of this sample is present baby steps with details of configuration
 
 The OAuth 2.0 flow used for this example is represented above:
 
-```mermaid
-sequenceDiagram
-User -->> Application: Get my account information
-Application -->> ResourceServer: Get account information
-ResourceServer -->> AuthorizationServer: Valid access token?
-Note right of AuthorizationServer: User does not have<br/> an access token
-AuthorizationServer --> ResourceServer: No valid access token
-ResourceServer --> Application: No valid access token
-Application --> User: Asking user auth information
-User -->> Application: Send requested information
-Application -->> AuthorizationServer: Authenticate user
-AuthorizationServer --> Application: Return JWT access token
-Application -->> ResourceServer: Get account information
-ResourceServer -->> AuthorizationServer: Valid access token?
-Note right of AuthorizationServer: User have an<br/> valid access token
-AuthorizationServer --> ResourceServer: Valid access token
-ResourceServer --> Application: Return account information
-Application --x User: I got my information, thanks!
-```
+<p align="center">
+  <img src="https://raw.githubusercontent.com/tnfigueiredo/spring-cloud-account-service/master/diagram.png" title="App OAuth password grant_type flow">
+</p>
 
 
 ## Content sources
