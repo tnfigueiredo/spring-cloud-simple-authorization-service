@@ -16,7 +16,7 @@ The OAuth 2.0 flow used for this example is represented above:
 
 ## Usage
 
-For this example, we gonna avoid get into details of client details. The focus is about the request for the access token and the resource server request with a valid access token.
+For this example, we gonna avoid get into client coding details. The focus is about the request for the access token and the resource server request with a valid access token.
 
 ### Access Token:
 
