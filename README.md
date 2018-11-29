@@ -2,7 +2,7 @@
 
 This project has the objective to present a sample for a simple authorization server using OAuth flows to authenticate and an user for an application. In this sample I'll not get into OAuth 2.0 details. It is easy to find articles to explain OAuth 2.0 flows (here is a suggestion: https://connect2id.com/learn/oauth-2).
 
-The main idea is to use a grant_type password to get access to a JWT token as an access token. This token gonna be use as a bearer token into requests to grant access to some protected resources. For this demonstration the authorization server gonna be a simple Spring Cloud app and for represent a client requests gonna be done by Postman to represent the access token request and an authorized request using a bearer token.
+The main idea is to use a grant_type password to get access to a JWT token as an access token. This token gonna be used as a bearer token into requests to grant access to some protected resources. For this demonstration the authorization server gonna be a simple Spring Cloud app and for represent a client requests gonna be done by Postman to represent the access token request and an authorized request using a bearer token.
 
 ## Approach
 
@@ -13,6 +13,31 @@ The OAuth 2.0 flow used for this example is represented above:
 <p align="center">
   <img src="https://raw.githubusercontent.com/tnfigueiredo/spring-cloud-account-service/master/diagram.png" title="App OAuth password grant_type flow">
 </p>
+
+## The application
+
+The application is composed a set of classes to represent a simple authorization and resource server, like a sample for an account service that has the responsibility of authorize users and deal with users information. The project structure is organized as explained above:
+
+ - A main class that starts the Spring Cloud app;
+ - A web security configuration class;
+ - An authorization server configuration class;
+ - A resource server configuration class;
+ - A restful controller, user service and user bean to represent the resource to be managed.
+
+
+### Web security configuration
+
+This configuration class [SecurityConfigu](repo/blob/master/src/main/java/com/sample/tnfigueiredo/config/SecurityConfigu.java) is responsible to enable the web security, inject the UserDetailsService and override the AuthenticationManager. The user detail service is the service which gonna recover the user information for authentication. The overrided AuthenticationManager gonna be used at the AuthorizationServer for some configurations.
+
+
+### Authorization server configuration
+
+This configuration class [AuthServerConfig](repo/blob/master/src/main/java/com/sample/tnfigueiredo/config/AuthServerConfig.java) is responsible to enable the Authorization Server, create the JWT Token configuration, create client credentials configuration. The AuthServerConfig creates a JwtAccessTokenConverter and creates a JwtTokenStore using this converter to deal with the JWT Tokens. Without it, the access token returned is a simple access token. This components are used to override the AuthorizationServerEndpointsConfigurer, using the token store, the access token converter and the authentication manager created until now at the application.
+
+
+### Authorization server configuration
+
+This configuration class [ResourceServerConfig](repo/blob/master/src/main/java/com/sample/tnfigueiredo/config/ResourceServerConfig.java) is responsible to enable the resource server configuration, the security for the resource server, enable resource servers to be stateless and to be accessed only with access token.
 
 ## Usage
 
@@ -28,7 +53,6 @@ CURL:
     http://localhost:9000/simple-auth-service/oauth/token \
     -H "Authorization: Basic myuserapp:myusersecret"
     -H 'Content-Type: application/x-www-form-urlencoded' \
-    -H 'Postman-Token: 8f87dee2-71a1-4cba-9ea8-29f8597aab5c' \
     -H 'cache-control: no-cache' \
     -d 'username=myuser&password=password&grant_type=password&client_id=myuserapp'
 ```
