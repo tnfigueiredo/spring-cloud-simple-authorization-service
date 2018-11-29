@@ -27,17 +27,17 @@ The application is composed a set of classes to represent a simple authorization
 
 ### Web security configuration
 
-This configuration class [SecurityConfigu](repo/blob/master/src/main/java/com/sample/tnfigueiredo/config/SecurityConfigu.java) is responsible to enable the web security, inject the UserDetailsService and override the AuthenticationManager. The user detail service is the service which gonna recover the user information for authentication. The overrided AuthenticationManager gonna be used at the AuthorizationServer for some configurations.
+This configuration class [SecurityConfigu](https://raw.githubusercontent.com/tnfigueiredo/spring-cloud-account-service/master/src/main/java/com/sample/tnfigueiredo/config/SecurityConfigu.java) is responsible to enable the web security, inject the UserDetailsService and override the AuthenticationManager. The user detail service is the service which gonna recover the user information for authentication. The overrided AuthenticationManager gonna be used at the AuthorizationServer for some configurations.
 
 
 ### Authorization server configuration
 
-This configuration class [AuthServerConfig](repo/blob/master/src/main/java/com/sample/tnfigueiredo/config/AuthServerConfig.java) is responsible to enable the Authorization Server, create the JWT Token configuration, create client credentials configuration. The AuthServerConfig creates a JwtAccessTokenConverter and creates a JwtTokenStore using this converter to deal with the JWT Tokens. Without it, the access token returned is a simple access token. This components are used to override the AuthorizationServerEndpointsConfigurer, using the token store, the access token converter and the authentication manager created until now at the application.
+This configuration class [AuthServerConfig](https://raw.githubusercontent.com/tnfigueiredo/spring-cloud-account-service/master/src/main/java/com/sample/tnfigueiredo/config/AuthServerConfig.java) is responsible to enable the Authorization Server, create the JWT Token configuration, create client credentials configuration. The AuthServerConfig creates a JwtAccessTokenConverter and creates a JwtTokenStore using this converter to deal with the JWT Tokens. Without it, the access token returned is a simple access token. This components are used to override the AuthorizationServerEndpointsConfigurer, using the token store, the access token converter and the authentication manager created until now at the application.
 
 
 ### Authorization server configuration
 
-This configuration class [ResourceServerConfig](repo/blob/master/src/main/java/com/sample/tnfigueiredo/config/ResourceServerConfig.java) is responsible to enable the resource server configuration, the security for the resource server, enable resource servers to be stateless and to be accessed only with access token.
+This configuration class [ResourceServerConfig](https://raw.githubusercontent.com/tnfigueiredo/spring-cloud-account-service/master/src/main/java/com/sample/tnfigueiredo/config/ResourceServerConfig.java) is responsible to enable the resource server configuration, the security for the resource server, enable resource servers to be stateless and to be accessed only with access token.
 
 ## Usage
 
@@ -78,7 +78,6 @@ CURL:
 ```CURL
 curl -X GET \
   http://localhost:9000/simple-auth-service/users \
-  -H 'Postman-Token: b7835041-de26-4330-814c-da62846e36dd' \
   -H 'cache-control: no-cache'
 ```
 
@@ -93,7 +92,6 @@ CURL:
 curl -X GET \
   http://localhost:9000/simple-auth-service/users \
   -H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE1NDMzODQyNzksInVzZXJfbmFtZSI6Im15dXNlciIsImF1dGhvcml0aWVzIjpbIlJPTEVfQURNSU4iXSwianRpIjoiZmI2YzY2NmYtMDUxMy00YzE5LWI2YjktOTdiYTE3OGEyZTc0IiwiY2xpZW50X2lkIjoibXl1c2VyYXBwIiwic2NvcGUiOlsiQURNSU4iLCJVU0VSIl19.bSP-Us6Yx60A-MXSnfdNlZySpiLQwd0FM5wHDAMWjN0"
-  -H 'Postman-Token: b7835041-de26-4330-814c-da62846e36dd' \
   -H 'cache-control: no-cache'
 ```
 
