@@ -106,3 +106,4 @@ curl -X GET \
  - https://connect2id.com/learn/oauth-2
  - https://spring.io/blog/2017/11/01/spring-security-5-0-0-rc1-released#password-encoding
  - https://dzone.com/articles/whats-better-oauth-access-tokens-or-json-web-token
+ - https://projects.spring.io/spring-security-oauth/docs/oauth2.html
