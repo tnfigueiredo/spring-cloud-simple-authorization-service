@@ -1,12 +1,24 @@
 # spring-cloud-simple-authorization-service
 
-This project has the objective to present a sample for a simple authorization server using OAuth flows to authenticate and an user for an application. In this sample I'll not get into OAuth 2.0 details. It is easy to find articles to explain OAuth 2.0 flows (here is a suggestion: https://connect2id.com/learn/oauth-2).
+This project has the objective to present a sample for a simple authorization server using OAuth flows to authenticate and an user for an application. 
+In this sample I'll not get into OAuth 2.0 details. It is easy to find articles to explain OAuth 2.0 flows (here is a suggestion: 
+https://connect2id.com/learn/oauth-2).
 
-The main idea is to use a grant_type password to get access to a JWT token as an access token. This token gonna be used as a bearer token into requests to grant access to some protected resources. For this demonstration the authorization server gonna be a simple Spring Cloud app and for represent a client requests gonna be done by Postman to represent the access token request and an authorized request using a bearer token.
+The main idea is to use a grant_type password to get access to a JWT token as an access token. This token gonna be used as a bearer token into requests 
+to grant access to some protected resources. For this demonstration the authorization server gonna be a simple Spring Cloud app and for represent a 
+client requests gonna be done by Postman to represent the access token request and an authorized request using a bearer token.
+
+It is important to reinforce that authorization and authentication are different responsibilities. Into this sample the component do both responsibilities. 
+When we are requesting an access token we are doing the authentication responsibility. Our user plays at the same time the role as application user 
+and as resource client. After getting the access token, he plays the role as resource client and uses its access token (as an authenticated user) 
+to access the user resource.
+
 
 ## Approach
 
-The objective of this sample is present baby steps with details of configurations and Spring Cloud resources used to achieve the final goal of providing an authorization server. The example is far of represent a scenario of production environment, but will make clear why some resources are being used. It might be a starting point.
+The objective of this sample is present baby steps with details of configurations and Spring Cloud resources used to achieve the final goal of
+ providing an authorization server. The example is far of representing a scenario of production environment, but will make clear why some resources 
+ are being used. It might be a starting point.
 
 The OAuth 2.0 flow used for this example is represented above:
 
@@ -16,7 +28,8 @@ The OAuth 2.0 flow used for this example is represented above:
 
 ## The application
 
-The application is composed a set of classes to represent a simple authorization and resource server, like a sample for an account service that has the responsibility of authorize users and deal with users information. The project structure is organized as explained above:
+The application is composed a set of classes to represent a simple authorization and resource server, like a sample for an account service that has 
+the responsibility of authorize users and deal with users information. The project structure is organized as explained above:
 
  - A main class that starts the Spring Cloud app;
  - A web security configuration class;
@@ -41,7 +54,8 @@ This configuration class [ResourceServerConfig](https://raw.githubusercontent.co
 
 ## Usage
 
-For this example, we gonna avoid get into client coding details. The focus is about the request for the access token and the resource server request with a valid access token.
+For this example, we gonna avoid get into client coding details. The focus is about the request for the access token and the resource server request 
+with a valid access token.
 
 ### Access Token:
 
@@ -50,11 +64,11 @@ To get an access token, here is an example with CURL and with Postman:
 CURL:
 ```CURL
     curl -X POST \
-    http://localhost:9000/simple-auth-service/oauth/token \
-    -H "Authorization: Basic myuserapp:myusersecret"
-    -H 'Content-Type: application/x-www-form-urlencoded' \
-    -H 'cache-control: no-cache' \
-    -d 'username=myuser&password=password&grant_type=password&client_id=myuserapp'
+  	http://localhost:9000/simple-auth-service/oauth/token \
+  	-H 'Content-Type: application/x-www-form-urlencoded' \
+  	-H 'Postman-Token: 74d4f8d4-3ac4-4a77-9e1c-8a64b70b86a2' \
+  	-H 'cache-control: no-cache' \
+  	-d 'grant_type=password&username=myuser&password=password'
 ```
 
 Postman:
